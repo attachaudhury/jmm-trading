@@ -1,0 +1,70 @@
+<div class="row products-section">
+    <div class="col-12">
+        <div class="breadcrumbs-row noborder">
+            <div class="bc-col">
+                <ul>
+                    <li><a href="javascript:void(0)"> Catalog </a></li>
+                    <li> Add Group</li>
+                </ul>
+            </div>
+            <div class="bc-col-btn ap-col-btn">
+                <button class="btn btn-save"><img src="assets/img/tick-round-white.png"> Save</button>
+                <button (click)="groupCancle()" class="btn btn-cancel"><img src="assets/img/close-white-ico.png"> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+    <!--Breadcrumbs-->
+</div>
+
+<div class="flex addproduct-wrap addgroup-wrap">
+
+    <div class="card ap-general">
+        <div class="ap-header">
+            Add Group
+        </div>
+        <div class="flex ap-body">
+            <div class="ap-body-col">
+                <div class="form-group">
+                    <label>Customer Group Name <sup>*</sup></label>
+                    <input type="text" class="form-control" placeholder="Customer Group Name">
+                </div>
+            </div>
+            <!--Col-->
+            <div class="ap-body-col ap-body-second">
+                <div class="form-group">
+                    <label>Description <sup>*</sup></label>
+                    <input type="text" class="form-control" placeholder="Description">
+                </div>
+            </div>
+            <!--Col-->
+            <div class="ap-body-col">
+                <div class="form-group">
+                    <label class="control-label">Approve New Customers
+                        <button type="button" class="btn" placement="top" ngbTooltip="Tooltip on right">
+                            <img src="assets/img/info-bg-ico.png"></button>
+                    </label>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="customRadio11" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadio11">Yes</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="customRadio22" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadio22">No</label>
+                    </div>
+                </div>
+            </div>
+            <!--col-->
+            <div class="ap-body-col">
+                <div class="form-group">
+                    <label>Sort Order</label>
+                    <input type="text" class="form-control" placeholder="Sort Order">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--General-->
+
+
+</div>
+

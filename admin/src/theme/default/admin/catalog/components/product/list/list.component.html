@@ -1,0 +1,150 @@
+<div class="row products-section products-sub-section">
+    <div class="col-12">
+        <div class="breadcrumbs-row">
+            <div class="bc-col">
+                <ul>
+                    <li><a href="javascript:void(0)"> {{'catalog.categories.Catalog'| translate}} </a></li>
+                    <li> {{'catalog.product.Products'| translate}}</li>
+                </ul>
+            </div>
+            <div class="bc-col-btn">
+                <button class="btn" [routerLink]="['/catalog/product/add']"><img
+                        src="assets/img/add-white-ico.png">{{'catalog.product.AddProduct'| translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <!--Breadcrumbs-->
+    <div class="col-12">
+        <div class="flex filter-row">
+            <div class="filter-lft">
+                <div class="toggle">
+                    <p>{{'catalog.product.Filters'| translate}}</p>
+                    <input class="tgl tgl-light" id="cb1" type="checkbox" [checked]="true"
+                           (change)="changeFilter($event)"/>
+                    <label class="tgl-btn" for="cb1"></label>
+                </div>
+            </div>
+            <!--Lft-->
+            <div class="filter-nav-list">
+                <ul class="flex">
+                    <li><a href="javascript:void(0)" placement="top-right"
+                           ngbTooltip="{{'ToolTip.comingsoon'| translate}}"> <img
+                            src="assets/img/export-ico.png"> {{'catalog.product.Export'| translate}} </a></li>
+                    <li><a href="javascript:void(0)" placement="top-right"
+                           ngbTooltip="{{'ToolTip.comingsoon'| translate}}"> <img
+                            src="assets/img/import-ico.png"> {{'catalog.product.Import'| translate}} </a></li>
+                    <li><a href="javascript:void(0)" placement="top-right"
+                           ngbTooltip="{{'ToolTip.comingsoon'| translate}}"> <img src="assets/img/list-ico.png"> </a>
+                    </li>
+                </ul>
+            </div>
+            <!--Right-->
+        </div>
+    </div>
+</div>
+<div class="flex product-wrap example-full-width">
+
+    <div *ngIf="buttoncheck == true" class="filter-section">
+
+        <div class="w3-container w3-animate-left">
+            <!--FILTER-->
+            <app-catalog-product-filter (progressEmits)="receiveProgress($event)"
+                                        [pageSize]="pageSize"></app-catalog-product-filter>
+        </div>
+    </div>
+    <!--LIST-->
+    <div class="product-table" [ngClass]="{'changesize': buttoncheck == true }">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col" width="5%">
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox mr-sm-2">
+                            </div>
+                        </div>
+                    </th>
+                    <th scope="col">{{'catalog.product.Image'| translate}}</th>
+                    <th scope="col">{{'catalog.product.Sku'| translate}}</th>
+                    <th scope="col" width="20%">{{'catalog.product.ProductsName'| translate}}</th>
+                    <th scope="col">{{'catalog.product.Quantity'| translate}}</th>
+                    <th scope="col">{{'catalog.product.Price'| translate}}</th>
+                    <th scope="col" width="100px">{{'catalog.product.Feature'| translate}}</th>
+                    <th scope="col">{{'catalog.product.Action'| translate}}</th>
+                    <th scope="col" width="100px">{{'catalog.product.Status'| translate}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let product of productSandbox.productList$ | async; let i=index">
+                    <th scope="row">
+                        <div class="form-group">
+                        </div>
+                    </th>
+                    <td style="cursor: pointer" (click)="updateProduct(product.productId)"><img
+                            *ngIf="product.productImage"
+                            [src]="imageUrl+'?width=60&height=60&path=' +product.productImage.containerName + '&name='+ product.productImage.image">
+                    </td>
+                    <td style="cursor: pointer" (click)="updateProduct(product.productId)">{{product.sku}}</td>
+                    <td style="cursor: pointer" (click)="updateProduct(product.productId)">{{product.name}}</td>
+                    <td style="cursor: pointer" (click)="updateProduct(product.productId)">{{product.quantity}}</td>
+                    <td style="cursor: pointer" (click)="updateProduct(product.productId)">{{product.price |
+                        currency:'USD':'symbol-narrow'}}
+                    </td>
+                    <td>
+                        <div class="toggle">
+                            <input class="tgl tgl-light" id={{i}} [(ngModel)]="product.isFeatured"
+                                   (change)="onFilterChange($event,product)"
+                                   type="checkbox"/>
+                            <label class="tgl-btn" for={{i}}></label>
+                        </div>
+                    </td>
+
+                    <td>
+                        <i style="cursor: pointer; font-size: 15px" class="fas fa-globe globe_icon"
+                           (click)="product_Details(product.productId)"></i>
+                        <a class="globe_icon" style="cursor: pointer" href="javascript:void(0)"
+                           (click)="updateProduct(product.productId)"> <img
+                                src="assets/img/edit-ico.png"> </a>
+                        <i [ngbPopover]="deleteContent" placement="bottom" #deletePop="ngbPopover"
+                           style="margin-left: -2px; cursor: pointer" class="fas fa-trash globe_icon">
+                            <ng-template #deleteContent>
+                                <div class="style">
+                                    <div class="modal-header">
+                                        <h6 class="modal-title"
+                                            style="margin-left: 17%;"> {{'catalog.product.DoYouWantToDelete'|
+                                            translate}}</h6>
+                                    </div>
+
+                                    <div class="modal-footer" style="margin-right: 23%;">
+                                        <button type="button" class="btn btn-danger" (click)="deletePop.close()"
+                                                data-dismiss="modal">{{'catalog.product.No'| translate}}
+                                        </button>
+                                        <button type="button" class="btn btn-success"
+                                                (click)="deleteProduct(product.productId)"
+                                                data-dismiss="modal">{{'catalog.product.Yes'| translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </i>
+                    </td>
+                    <td>
+                        <div *ngIf="product.isActive === 1">
+                            <span style="border-radius: 7px; width: 80px; background: #0fae61;display: inline-block; padding: 4px 20px;"><b>{{'Settings.Role.Active'| translate}}</b></span>
+                        </div>
+                        <div *ngIf="product.isActive === 0">
+                            <span style="border-radius: 7px;width: 81px;background: #f26648;display: inline-block; padding: 4px 11px;"><b>{{'Settings.Role.InActive'| translate}}</b></span>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <mat-paginator [length]="productSandbox.productCount$ | async" [pageSize]="pageSize" [pageIndex]="index"
+                       [pageSize]="pageSize"
+                       [pageSizeOptions]="[pageSize]"
+                       (page)="onPageChange($event)">
+        </mat-paginator>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<mat-chip-list *ngIf="(wishlistSandbox.wishlist$ | async)?.length == 0">
+    <mat-chip color="warn" selected="true">{{'whishlist.YOUHAVENOITEMS'|translate}}</mat-chip>
+</mat-chip-list>
+
+<mat-card *ngIf="(wishlistSandbox.wishlist$ | async)?.length > 0" class="p-0">
+    <div class="wrapper" *ngIf="wishlistSandbox.wishlistLoading$ | async">
+        <div class="overlay">
+            <div class="spinner-wrapper">
+                <app-spinner [isShow]="wishlistSandbox.wishlistLoading$ | async"></app-spinner>
+            </div>
+        </div>
+    </div>
+    <div class="mat-table wishlist-table">
+        <div class="mat-header-row">
+            <div class="mat-header-cell">{{'whishlist.Product'|translate}}</div>
+            <div class="mat-header-cell">{{'whishlist.Name'|translate}}</div>
+            <div class="mat-header-cell">{{'whishlist.Price'|translate}}</div>
+            <div class="mat-header-cell">{{'whishlist.AvailabileDate'|translate}}</div>
+            <div class="mat-header-cell">
+                <div class="px-1">{{'whishlist.Action'|translate}}
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let product of wishlistSandbox.wishlist$ | async" class="mat-row">
+            <div class="mat-cell"><img *ngIf="product.productImage"
+                                       [src]="imagePath + '?width=60&height=60&path=' + product.productImage.containerName + '&name=' + product.productImage.image">
+            </div>
+            <div class="mat-cell"><a [routerLink]="['/products', product.id, product.name]" class="product-name">{{product.product.name}}</a>
+            </div>
+            <div class="mat-cell">{{product.product.price | currency:'USD':'symbol-narrow' }}</div> <!-- | number : '1.2-2' -->
+            <div class="mat-cell">{{product.product.dateAvailable | date:'dd/MM/yyyy'}}</div>
+            <div class="mat-cell">
+                <div class="p-1">
+                    <button class="card-hover" mat-mini-fab color="primary" (click)="addToCart(product)" matTooltip="{{'whishlist.AddToCart'|translate}}">
+                        <mat-icon>add_shopping_cart</mat-icon>
+                    </button>
+                    <button mat-mini-fab color="warn" (click)="remove(product.wishlistProductId)" matTooltip="{{'whishlist.Clear'|translate}}"
+                            class="remove card-hover">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <span [hidden]="!(wishlistSandbox.wishlistLoading$ | async)"
+                          class="spinner-border spinner-border-sm pull-right" role="status" aria-hidden="true"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-card>

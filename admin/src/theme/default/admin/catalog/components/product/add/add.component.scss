@@ -1,0 +1,25 @@
+/* LOGIN VALIDATION*/
+.validationcolor {
+  border-color: red;
+
+}
+
+.error {
+  color: red;
+}
+
+/* Blue */
+.info {
+  border-color: blue;
+  color: white;
+  background: blue;
+}
+
+.info:hover {
+  background: green;
+  color: white;
+}
+
+mat-radio-button {
+  padding: 1px 3px !important;
+}

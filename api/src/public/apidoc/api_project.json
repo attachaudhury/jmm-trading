@@ -1,0 +1,16 @@
+{
+  "name": "JMM Trading V2.1.0",
+  "version": "2.1.0",
+  "description": "JMM Trading RESTFUL API Document",
+  "title": "JMM Trading RESTFUL API Document",
+  "url": "http://localhost:8000",
+  "sampleUrl": "http://localhost:8000",
+  "defaultVersion": "0.0.0",
+  "apidoc": "0.3.0",
+  "generator": {
+    "name": "apidoc",
+    "time": "2019-06-24T12:51:12.884Z",
+    "url": "http://apidocjs.com",
+    "version": "0.17.7"
+  }
+}

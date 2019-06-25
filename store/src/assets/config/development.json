@@ -1,0 +1,13 @@
+{
+  "api": {
+    "storeUrl":  "http://shopapi.broker92.com/api/"
+
+  },
+  "paths": {
+    "imagesRoot": "/assets/images/",
+    "userImageFolder": "/assets/images/users/"
+  },
+  "resize": {
+    "imageUrl": "http://shopapi.broker92.com/api/media/image-resize"
+  }
+}

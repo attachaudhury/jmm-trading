@@ -1,0 +1,48 @@
+<mat-toolbar class="top-navbar" fxLayoutAlign="center center" style="border-bottom: 1px solid #dfdfdf">
+    <a mat-button (click)="homePage()" 
+       routerLink="/" 
+       routerLinkActive="horizontal-active-link"
+       [routerLinkActiveOptions]="{exact:true}">{{'Shared.Home'|translate}}</a>
+    <a mat-button 
+       (click)="getProduct();sendUniqueId('productFilter')" 
+       [routerLink]="['/products']"
+       routerLinkActive="horizontal-active-link" 
+       [routerLinkActiveOptions]="{exact:true}">
+       {{'Shared.AllProducts'|translate}}
+    </a>
+    <span >
+        <a mat-button 
+            routerLinkActive="horizontal-active-link"
+            *ngFor="let category of categories;let i=index"
+            [routerLinkActiveOptions]="{exact:true}"
+           [routerLink]="['/products', category.categoryId]">{{category.name}}
+               </a>
+    </span>
+    <mat-menu #menu="matMenu" [overlapTrigger]="false" class="mega-menu app-dropdown">
+       <span (mouseleave)="leaveMouse($event)">
+        <div fxLayout="row wrap" *ngIf="((index)||(index === 0))">
+            <div fxFlex="20" fxLayout="column" class="p-1" 
+               *ngFor="let subCategory of categories[index].children">
+                <a mat-menu-item [routerLink]="['/products', subCategory.categoryId]"
+                   [routerLinkActiveOptions]="{exact:true}"
+                   (click)="linkActive()"
+                   routerLinkActive="horizontal-active-link">
+                    <b>{{subCategory.name}}</b>
+                </a>
+                <mat-divider></mat-divider>
+                <div *ngIf="subCategory.children">
+                    <div *ngFor="let grandsubCategory of subCategory.children;let j=index">
+                        <a mat-menu-item [routerLink]="['/products', grandsubCategory.categoryId]"
+                           [routerLinkActiveOptions]="{exact:true}" 
+                           (click)="linkActive()"
+                           routerLinkActive="horizontal-active-link">
+                            {{grandsubCategory.name}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+       </span>
+    </mat-menu>
+    <a mat-button routerLink="/contact" routerLinkActive="horizontal-active-link"
+       [routerLinkActiveOptions]="{exact:true}">{{'Shared.Contact'|translate}}</a>
+</mat-toolbar>

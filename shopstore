@@ -1,0 +1,9 @@
+server {
+    listen 80;
+    server_name shopstore.broker92.com ;
+    root /var/shop/store/dist;
+    index index.html;
+    location / {
+         try_files $uri $uri/ =404;
+    }
+}

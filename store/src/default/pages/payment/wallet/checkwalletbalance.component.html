@@ -1,0 +1,12 @@
+<mat-card>
+        <form (submit)="onSignupForm(heroForm)" #heroForm="ngForm" >
+                <h2 class="text-dark">Wallet Credentials</h2>
+                <div class="flex custom-field mb-2">
+                  <input type="email" name="email" #inputemail="ngModel" ngModel>
+                </div>
+                <div class="flex custom-field mb-2">
+                  <input type="text" name="password" #inputpassword="ngModel" ngModel/>
+                </div>
+                <button type="submit" mat-button color="accent">Save</button>
+              </form>
+  </mat-card>

@@ -1,0 +1,22 @@
+{
+  "api": {
+    "baseUrl": "http://shopapi.broker92.com/api"
+  },
+  "resize": {
+    "imageUrl": "http://shopapi.broker92.com/api/media/image-resize"
+  },
+  "productinfo": {
+    "productInfoUrl": "http://shopapi.broker92.com/"
+  },
+  "notifications": {
+    "unauthorizedEndpoints": [
+      "api/auth/login"
+    ],
+    "notFoundEndpoints": [
+      "api/products",
+      "api/account/login",
+      "api/account/register"
+    ]
+  }
+}
+

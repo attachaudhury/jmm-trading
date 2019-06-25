@@ -1,0 +1,23 @@
+{
+  "api": {
+    "baseUrl": ""
+  },
+  "resize": {
+    "imageUrl": ""
+  },
+  "productinfo": {
+    "productInfoUrl": ""
+  },
+  "notifications": {
+    "unauthorizedEndpoints": [
+      "api/auth/login"
+    ],
+    "notFoundEndpoints": [
+      "api/products",
+      "api/account/login",
+      "api/account/register"
+    ]
+  },
+
+  "debugging": false
+}

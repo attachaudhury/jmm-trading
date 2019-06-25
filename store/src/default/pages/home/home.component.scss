@@ -1,0 +1,25 @@
+.products-tabs{
+    margin-top: 30px;   
+}
+
+.banners-container[_ngcontent-c23] {
+    margin: 22px -8px;
+}
+.banners-container[_ngcontent-c23] .banner[_ngcontent-c23] {
+    position: relative;
+    margin: 8px;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    transition: .15s ease-in;
+}
+.banners-container[_ngcontent-c23] .banner[_ngcontent-c23] .info[_ngcontent-c23] {
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,.4);
+    color: #fff;
+    padding: 90px 0;
+    transition: .15s ease-in;
+}

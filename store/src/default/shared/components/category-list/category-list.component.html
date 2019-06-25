@@ -1,0 +1,10 @@
+<div class="category" *ngFor="let category of categories; let i = index">
+    <button mat-menu-item [ngClass]="{'active':isClicked[category.categoryId]}" (click)="changeCategory(category.categoryId, category.name);isClicked = [];isClicked[category.categoryId] = (isClicked[category.categoryId]? false :true )">
+        <span>{{category.name}}</span>
+    </button>
+    <div *ngIf="category.children && category.children.length>0" class="sub-category">
+        <app-category-list [categories]="category.children" [categoryParentId]="category.categoryId" (change)="changeCategory($event)"></app-category-list>
+    </div>
+</div>
+
+
